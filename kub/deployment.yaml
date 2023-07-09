@@ -14,6 +14,12 @@ spec:
     spec:
       containers:
         - name: my-container
-          image: manehharutyunyan/devops-backend
+          image: manehharutyunyan/devops-backend:latest 
           ports:
             - containerPort: 80
+          env:
+          - name: DB_ENDPOINT
+            valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: var2-key 

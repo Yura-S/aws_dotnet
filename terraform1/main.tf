@@ -1,15 +1,14 @@
-data "aws_route53_zone" "existing_hosted_zone" {
-  name = "ysahakyan.devopsaca.site"  # Replace with your domain name
+variable "lb_dns_name" {
+  description = "The DNS name of the load balancer"
 }
 
-output "hosted_zone_id" {
-  value = data.aws_route53_zone.existing_hosted_zone.id
-}
-
-data "external" "aws_cli_command" {
-  program = ["bash", "-c", "aws ec2 describe-instances --region us-east-1 --output json"]
-}
-
-output "instance_details" {
-  value = jsondecode(data.external.aws_cli_command.result)
+resource "aws_route53_record" "example" {
+  zone_id = "Z057290428AHLJHX3Z6WE"
+  name    = "api.ysahakyan.devopsaca.site"
+  type    = "A"
+  alias {
+    name                   = var.lb_dns_name
+    zone_id                = "Z35SXDOTRQ7X7K"
+    evaluate_target_health = true
+  }
 }

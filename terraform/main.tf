@@ -211,7 +211,7 @@ resource "aws_iam_role_policy_attachment" "node2" {
 #  name = "my-eks-cluster"  # Replace with the name of your EKS cluster
 #  depends_on = [data.aws_eks_cluster.my_cluster]
 #}
-############################################
+############################################################################################################################################
 
 resource "aws_db_instance" "education" {
   identifier            = "postgrestestdb"
@@ -233,6 +233,12 @@ resource "aws_db_instance" "education" {
     aws_security_group.postgres_db.id,
   ]
 }
+
+data "aws_db_instance" "education" {
+  db_instance_identifier = aws_db_instance.education.id
+}
+
+
 
 resource "aws_security_group" "postgres_db" {
   name        = "postgres-db-sg"
@@ -256,12 +262,23 @@ data "aws_security_group" "node_group_sg" {
   depends_on = [aws_eks_node_group.my_node_group]
 }
 
-output "node_group_security_group_id" {
-  value = data.aws_security_group.node_group_sg.id
-}
-
 ############################################
 
-#output "load_balancer_url" {
-#value = aws_lb.web.dns_name
+resource "aws_route53_record" "example" {
+  zone_id = "Z057290428AHLJHX3Z6WE"  # Replace with the actual zone ID of your hosted zone
+  name    = "ysahakyan.devopsaca.site"
+  type    = "A"
+
+  alias {
+    name                   = "s3-website-us-east-1.amazonaws.com."
+    zone_id                = "Z3AQBSTGFYJSTF"  # Replace with the S3 zone ID for the desired region
+    evaluate_target_health = true
+  }
+}
+
+
+##############################################################################################################################################
+
+#output "ep" {
+#value = local.rds_endpoint
 #}
