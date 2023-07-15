@@ -22,9 +22,10 @@ SQL_QUERY_2="CREATE TABLE IF NOT EXISTS public.users
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );"
 SQL_QUERY_3="INSERT INTO users (name, email) VALUES
-    ('John Doe', 'john.doe@example.com'),
-    ('Jane Smith', 'jane.smith@example.com'),
-    ('Alice Johnson', 'alice.johnson@example.com');"
+    ('Mane', 'Mane@example.com'),
+    ('Sahak', 'Sahak@example.com'),
+    ('Ara', 'Ara@example.com'),
+    ('Yura', 'Yura@example.com');"
 
 
 # Connect to the database and execute the SQL queries

@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Owner     = "yura"
+      Owner     = "three_tier_app"
       Type      = "prod"
     }
   }

@@ -12,3 +12,27 @@ resource "aws_route53_record" "example" {
     evaluate_target_health = true
   }
 }
+
+#resource "aws_acm_certificate" "yapicert" {
+#  private_key      = file("${path.module}/privkey1.pem")
+#  certificate_body = file("${path.module}/cert1.pem")
+#  certificate_chain = file("${path.module}/chain1.pem")
+#}
+
+#data "aws_lb" "lb" {
+#  name = var.lb_dns_name
+#}
+#
+#data "aws_lb_listener" "listener" {
+#  load_balancer_arn = data.aws_lb.lb.arn
+#}
+#
+#output "listener_arn" {
+#  value = data.aws_lb_listener.listener.arn
+#}
+#
+#resource "aws_lb_listener_certificate" "lb_certificate" {
+#  listener_arn    = data.aws_lb_listener.listener.arn
+#  certificate_arn = aws_acm_certificate.yapicert.arn
+#}
+
