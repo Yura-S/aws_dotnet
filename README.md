@@ -7,6 +7,7 @@ BACKEND - locates in EKS cluster. runs in 3 pods behind load balancer. creates u
 DATABASE - locates in RDS. its postgre
 
 
+
 For running this application in your repository you need to:
 
 1) create secrets in your repository
