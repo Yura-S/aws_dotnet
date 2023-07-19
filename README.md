@@ -3,5 +3,3 @@ For runnig this application you need to install
 -kubectl
 -aws cli
 -npm
-
-test
