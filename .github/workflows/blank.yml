@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}  
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+           
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: create ssl files on terraform location
+      working-directory: terraform
+      run: |  
+        echo "${{ secrets.CERT }}" > cert.pem
+        echo "${{ secrets.CHAIN }}" > chain.pem
+        echo "${{ secrets.PRIVKEY }}" > privkey.pem
+         echo "${{ secrets.CERT1 }}" > cert1.pem
+        echo "${{ secrets.CHAIN1 }}" > chain1.pem
+        echo "${{ secrets.PRIVKEY1 }}" > privkey1.pem
+      
+    #- name: run terraform initialization
+    #  working-directory: terraform
+    #  run: terraform init
