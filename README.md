@@ -21,13 +21,13 @@ For running this application in your repository you need to:
 
    TF_API_TOKEN
 
-   -your domains certificate files content
+   -your domains certificate files contents
    
    CERT
    CHAIN
    PRIVKEY
 
-   -your api's certificate files content(if domain test.com then api is api.test.com)
+   -your api's certificate files contents(if domain test.com then api is api.test.com)
    
    CERT1
    CHAIN1
