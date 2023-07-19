@@ -36,7 +36,8 @@ For running this application in your repository you need to:
    -your database password(not configured yet, now uses 12453265 password)
 
    DB_PASSWORD
-   
+
+2) clone this repository for making changes
 
 3) raplace your domain(here is ysahakyan.devopsaca.site) and subdomain(here is api.ysahakyan.devopsaca.site) name in terraform files:
 
@@ -58,10 +59,10 @@ For running this application in your repository you need to:
    
    copy all files in created /build to your s3 bucket
 
-6) create route53 hosted zone for your domain and configure it to work
+5) create route53 hosted zone for your domain and configure it to work
 
-7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script
+6) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script
 
    needs installed psql for it
 
-9) copy all files to your repository(runs while pushing anything in actions_test)
+7) copy all files to your repository(runs while pushing anything in actions_test)
