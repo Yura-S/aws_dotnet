@@ -33,7 +33,7 @@ For running this application in your repository you need to:
    CHAIN1
    PRIVKEY1
 
-   -your database password(not configured yet, now uses )
+   -your database password(not configured yet, now uses 12453265 password)
 
    DB_PASSWORD
    
