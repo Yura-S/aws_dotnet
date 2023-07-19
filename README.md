@@ -60,6 +60,8 @@ For running this application in your repository you need to:
 
 6) create route53 hosted zone for your domain and configure it to work
 
-7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script 
+7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script
 
-8) copy all files to your repository(runs while pushing anything in actions_test)
+   needs installed psql for it
+
+9) copy all files to your repository(runs while pushing anything in actions_test)
