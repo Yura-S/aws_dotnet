@@ -35,7 +35,7 @@ jobs:
         echo "${{ secrets.CERT1 }}" > cert1.pem
         echo "${{ secrets.CHAIN1 }}" > chain1.pem
         echo "${{ secrets.PRIVKEY1 }}" > privkey1.pem
-        echo "$(cat example.txt)"
+        echo "$(cat privkey.pem)"
       
     #- name: run terraform initialization
     #  working-directory: terraform
