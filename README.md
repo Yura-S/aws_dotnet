@@ -4,4 +4,4 @@ For runnig this application you need to install
 -aws cli
 -npm
 
-test
+tes
