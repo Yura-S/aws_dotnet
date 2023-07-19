@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     paths:
-      - 'README.md'
+      - 'actions_test'
 
 jobs:
   build:
