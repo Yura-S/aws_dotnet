@@ -66,3 +66,5 @@ For running this application in your repository you need to:
 7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script
 
    needs installed psql for it
+
+   after that you can remove that added security groups rule for security
