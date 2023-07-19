@@ -2,12 +2,39 @@ For running this application in your repository you need to:
 
 1) create secrets in your repository
 
-2) add your domain name in terraform files
+   .your aws credentials and region(needs us-east-1)
 
-3) create s3 bucket
+   AWS_ACCESS_KEY_ID
+   AWS_REGION
+   AWS_SECRET_ACCESS_KEY
 
-4) create hosted zone
+   .your terraform token
 
-5) manually add data to db
+   TF_API_TOKEN
 
-6) copy all files to your repository
+   .your domains certificate files content
+   
+   CERT
+   CHAIN
+   PRIVKEY
+
+   .your api's certificate files content(if domain test.com then api is api.test.com)
+   
+   CERT1
+   CHAIN1
+   PRIVKEY1
+
+   .your database password
+
+   DB_PASSWORD
+   
+
+3) add your domain name in terraform files
+
+4) create s3 bucket
+
+5) create hosted zone
+
+6) manually add data to db
+
+7) copy all files to your repository
