@@ -29,40 +29,40 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: create ssl files on terraform location
-      working-directory: terraform
-      run: |  
-        echo "${{ secrets.CERT }}" > cert.pem
-        echo "${{ secrets.CHAIN }}" > chain.pem
-        echo "${{ secrets.PRIVKEY }}" > privkey.pem
-        echo "${{ secrets.CERT1 }}" > cert1.pem
-        echo "${{ secrets.CHAIN1 }}" > chain1.pem
-        echo "${{ secrets.PRIVKEY1 }}" > privkey1.pem
-        ls -la
+    #- name: create ssl files on terraform location
+    #  working-directory: terraform
+    #  run: |  
+    #    echo "${{ secrets.CERT }}" > cert.pem
+    #    echo "${{ secrets.CHAIN }}" > chain.pem
+    #    echo "${{ secrets.PRIVKEY }}" > privkey.pem
+    #    echo "${{ secrets.CERT1 }}" > cert1.pem
+    #    echo "${{ secrets.CHAIN1 }}" > chain1.pem
+    #    echo "${{ secrets.PRIVKEY1 }}" > privkey1.pem
+    #    ls -la
       
-    - name: run terraform initialization
-      working-directory: terraform
-      run: terraform init
+    #- name: run terraform initialization
+    #  working-directory: terraform
+    #  run: terraform init
       
-    - name: run terraform initialization
-      working-directory: terraform
-      run: terraform apply -auto-approve
+    #- name: run terraform initialization
+    #  working-directory: terraform
+    #  run: terraform apply -auto-approve
       
-    - name: run add db endpoint env var
-      working-directory: terraform
-      run: |
-        DB_ENDPOINT=$(aws rds describe-db-instances --query 'DBInstances[?DBInstanceIdentifier==`postgrestestdb`].[Endpoint.Address]' --output text)
-        DB_ENDPOINT="Server="$DB_ENDPOINT
-        DB_ENDPOINT=$DB_ENDPOINT";Port=5432;Database=PostgresTestDb;User Id=postgres;Password=12453265"
-        echo $DB_ENDPOINT
+    #- name: run add db endpoint env var
+    #  working-directory: terraform
+    #  run: |
+    #    DB_ENDPOINT=$(aws rds describe-db-instances --query 'DBInstances[?DBInstanceIdentifier==`postgrestestdb`].[Endpoint.Address]' --output text)
+    #    DB_ENDPOINT="Server="$DB_ENDPOINT
+    #    DB_ENDPOINT=$DB_ENDPOINT";Port=5432;Database=PostgresTestDb;User Id=postgres;Password=12453265"
+    #    echo $DB_ENDPOINT
         
-    - name: run kub commands
-      working-directory: kub
-      run: |
-        aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
-        kubectl create secret generic my-secret --from-literal=var2-key="$DB_ENDPOINT"
-        kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml 
+    #- name: run kub commands
+    #  working-directory: kub
+    #  run: |
+    #    aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
+    #    kubectl create secret generic my-secret --from-literal=var2-key="$DB_ENDPOINT"
+    #    kubectl apply -f deployment.yaml
+    #    kubectl apply -f service.yaml 
         
     - name: run wait for lb dns var
       working-directory: kub
@@ -71,7 +71,7 @@ jobs:
          LB_DNS=`kubectl get service my-service --namespace default -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"`
          sleep 1
         done
-        echo "Done"
+        echo $LB_DNS
         
     - name: run terraform initialization
       working-directory: terraform1
