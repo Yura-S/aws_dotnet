@@ -49,13 +49,17 @@ For running this application in your repository you need to:
 4) create s3 bucket which contains frontend and communicates with backend by your api(api.test.com). need to have same name as domain(test.com)
 
    frontend in https://github.com/Yura-S/ad_frontend.git
+   
    clone it
+   
    change in src/App.js "api.ysahakyan.devopsaca.site" to your api(api.test.com)
+   
    build code(npm run build)
+   
    copy all files in created /build to your s3 bucket
 
-5) create route53 hosted zone for your domain and configure it to work
+6) create route53 hosted zone for your domain and configure it to work
 
-6) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script 
+7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script 
 
-7) copy all files to your repository(runs while pushing anything in actions_test)
+8) copy all files to your repository(runs while pushing anything in actions_test)
