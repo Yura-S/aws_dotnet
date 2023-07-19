@@ -77,5 +77,6 @@ jobs:
     - name: run terraform initialization
       working-directory: terraform1
       run: terraform apply -var="lb_dns_name=$LB_DNS" -auto-approve 
-        
+      
+          
         
