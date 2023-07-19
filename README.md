@@ -47,7 +47,7 @@ For running this application in your repository you need to:
    
    /teraform1/main.tf
 
-4) create s3 bucket which contains frontend and communicates with backend by your api(api.test.com). need to have same name as domain(test.com)
+4) create s3 bucket which will contain frontend...need to have same name as domain(test.com)
 
    frontend in https://github.com/Yura-S/ad_frontend.git
    
