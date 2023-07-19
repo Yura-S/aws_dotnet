@@ -32,9 +32,10 @@ jobs:
         echo "${{ secrets.CERT }}" > cert.pem
         echo "${{ secrets.CHAIN }}" > chain.pem
         echo "${{ secrets.PRIVKEY }}" > privkey.pem
-         echo "${{ secrets.CERT1 }}" > cert1.pem
+        echo "${{ secrets.CERT1 }}" > cert1.pem
         echo "${{ secrets.CHAIN1 }}" > chain1.pem
         echo "${{ secrets.PRIVKEY1 }}" > privkey1.pem
+        cat privkey.pem
       
     #- name: run terraform initialization
     #  working-directory: terraform
