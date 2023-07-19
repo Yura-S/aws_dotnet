@@ -58,4 +58,4 @@ For running this application in your repository you need to:
 
 6) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script 
 
-7) copy all files to your repository
+7) copy all files to your repository(runs while pushing anything in actions_test)
