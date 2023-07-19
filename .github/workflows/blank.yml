@@ -41,7 +41,7 @@ jobs:
         ls -la
       
     - name: run terraform initialization
-       working-directory: terraform
+      working-directory: terraform
       run: terraform init
       
     - name: run terraform initialization
