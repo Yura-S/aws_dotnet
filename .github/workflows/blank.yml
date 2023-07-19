@@ -60,26 +60,25 @@ jobs:
       working-directory: kub
       run: |
         aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
-    #    kubectl create secret generic my-secret --from-literal=var2-key="$DB_ENDPOINT"
-    #    kubectl apply -f deployment.yaml
-    #    kubectl apply -f service.yaml 
-        
-    - name: run wait for lb dns var
-      working-directory: kub
-      run: |  
+        kubectl create secret generic my-secret --from-literal=var2-key="$DB_ENDPOINT"
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml 
         while [ -z "$LB_DNS" ]; do
          LB_DNS=`kubectl get service my-service --namespace default -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"`
          sleep 1
         done
         echo $LB_DNS
+        cd ../terraform1
+        terraform init
+        terraform apply -var="lb_dns_name=$LB_DNS" -auto-approve 
         
-    - name: run terraform initialization
-      working-directory: terraform1
-      run: terraform init
+    #- name: run terraform initialization
+    #  working-directory: terraform1
+    #  run: terraform init
       
-    - name: run terraform initialization
-      working-directory: terraform1
-      run: terraform apply -var="lb_dns_name=$LB_DNS" -auto-approve 
+    #- name: run terraform initialization
+    #  working-directory: terraform1
+    #  run: terraform apply -var="lb_dns_name=$LB_DNS" -auto-approve 
       
           
         
