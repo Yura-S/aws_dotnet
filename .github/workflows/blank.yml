@@ -56,10 +56,10 @@ jobs:
     #    DB_ENDPOINT=$DB_ENDPOINT";Port=5432;Database=PostgresTestDb;User Id=postgres;Password=12453265"
     #    echo $DB_ENDPOINT
         
-    #- name: run kub commands
-    #  working-directory: kub
-    #  run: |
-    #    aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
+    - name: run kub commands
+      working-directory: kub
+      run: |
+        aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
     #    kubectl create secret generic my-secret --from-literal=var2-key="$DB_ENDPOINT"
     #    kubectl apply -f deployment.yaml
     #    kubectl apply -f service.yaml 
