@@ -1,3 +1,10 @@
+This project creates three-tier application:
+
+FRONTEND - locates in s3 bucket. pairs with domain by route53. uses api to connect with backend
+BACKEND - locates in EKS cluster. runs in 3 pods behind load balancer. creates using dockerhub image
+DATABASE - locates in RDS. its postgre
+
+
 For running this application in your repository you need to:
 
 1) create secrets in your repository
@@ -37,10 +44,10 @@ For running this application in your repository you need to:
    
    teraform1/main.tf
 
-5) create s3 bucket which contains frontend and communicates with backend by your api(api.test.com). need to have same name as domain(test.com)
+4) create s3 bucket which contains frontend and communicates with backend by your api(api.test.com). need to have same name as domain(test.com)
 
-6) create route53 hosted zone for your domain and configure it to work
+5) create route53 hosted zone for your domain and configure it to work
 
-7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script 
+6) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script 
 
-8) copy all files to your repository
+7) copy all files to your repository
