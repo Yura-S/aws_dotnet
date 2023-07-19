@@ -48,7 +48,7 @@ jobs:
       working-directory: terraform
       run: terraform apply -auto-approve
       
-    - name: run add db endpoint env var
+    - name: run setup application
       working-directory: terraform
       run: |
         DB_ENDPOINT=$(aws rds describe-db-instances --query 'DBInstances[?DBInstanceIdentifier==`postgrestestdb`].[Endpoint.Address]' --output text)
