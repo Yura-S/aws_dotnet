@@ -2,7 +2,7 @@ This project creates three-tier application:
 
 FRONTEND - locates in s3 bucket. pairs with domain by route53. uses api to connect with backend
 
-BACKEND - locates in EKS cluster. runs in 3 pods behind load balancer. creates using dockerhub image
+BACKEND - locates in EKS cluster. runs in 3 pods behind load balancer which paired with api by route53. creates using dockerhub image
 
 DATABASE - locates in RDS. its postgre
 
