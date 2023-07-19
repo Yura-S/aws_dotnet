@@ -29,7 +29,11 @@ For running this application in your repository you need to:
    DB_PASSWORD
    
 
-3) add your domain name in terraform files
+3) raplace your domain(here is ysahakyan.devopsaca.site) and subdomain(here is api.ysahakyan.devopsaca.site) name in terraform files:
+
+terraform/main.tf
+terraform/route53.tf
+teraform1/main.tf
 
 4) create s3 bucket
 
