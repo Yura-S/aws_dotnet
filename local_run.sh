@@ -13,12 +13,12 @@ DB_ENDPOINT=$DB_ENDPOINT";Port=5432;Database=PostgresTestDb;User Id=postgres;Pas
 
 cd ../kub
 aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
-kubectl create secret generic my-secret --from-literal=var2-key="$DB_ENDPOINT"
+kubectl create secret generic connection_string --from-literal=var2-key="$DB_ENDPOINT"
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 
 while [ -z "$LB_DNS" ]; do
-  LB_DNS=`kubectl get service my-service --namespace default -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"`
+  LB_DNS=`kubectl get service lb_connection_service --namespace default -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"`
   sleep 1
 done
 

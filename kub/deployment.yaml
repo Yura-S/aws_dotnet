@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: backend_deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-app
+      app: backend_app
   template:
     metadata:
       labels:
-        app: my-app
+        app: backend_app
     spec:
       containers:
-        - name: my-container
+        - name: backend_container
           image: manehharutyunyan/devops-backend:latest 
           ports:
             - containerPort: 80
@@ -21,5 +21,5 @@ spec:
           - name: DB_ENDPOINT
             valueFrom:
                 secretKeyRef:
-                  name: my-secret
-                  key: var2-key 
+                  name: connection_string
+                  key: var2-key
