@@ -1,45 +1,45 @@
 This project creates three-tier application:
 
-FRONTEND - locates in s3 bucket. pairs with domain by route53. uses api to connect with backend
+FRONTEND - is located in S3 bucket, paired with domain with Route53. Frontend uses API to connect with Backend.
 
-BACKEND - locates in EKS cluster. runs in 3 pods behind load balancer which paired with api by route53. creates using dockerhub image
+BACKEND - is located in EKS cluster, is ran on 3 pods behind load balancer, which is paired with API by Route53. Backend is created using DockerHUB image.
 
-DATABASE - locates in RDS. its postgre
+DATABASE - is located in RDS, type: Postgres.
 
 
-For running this application in your repository you need to:
+To run this application in Github repository, you need to:
 
-1) create secrets in your repository
+1) Create secrets in your repository:
 
-   -your aws credentials and region(needs us-east-1)
+   a) your AWS credentials and region (NOTE: you should use us-east-1 for region)
 
    AWS_ACCESS_KEY_ID
    AWS_REGION
    AWS_SECRET_ACCESS_KEY
 
-   -your terraform token
+   b) your terraform TOKEN
 
    TF_API_TOKEN
 
-   -your domains certificate files contents
-   
+   c) you need to copy the content of locally saved secret keys to Github Secrets with the same naming as below
+
    CERT
    CHAIN
    PRIVKEY
 
-   -your api's certificate files contents(if domain test.com then api is api.test.com)
-   
+   d) for API's certificates copy the content from local files to GitHub Secrets with the same naming as below (for instance: GIVEN Domain URL -> test.com, THEN API URL -> api.test.com)
+
    CERT1
    CHAIN1
    PRIVKEY1
 
-   -your database password(not configured yet, now uses 12453265 password)
+   e) your DB password (NOTE: is not configured, USE: <12453265>)
 
    DB_PASSWORD
 
-2) clone this repository for making changes
+2) Clone this repository to be able to make changes
 
-3) raplace your domain(here is ysahakyan.devopsaca.site) and subdomain(here is api.ysahakyan.devopsaca.site) name in terraform files:
+3) Replace your Domain (I'm using <ysahakyan.devopsaca.site>) and Subdomain (I'm using <api.ysahakyan.devopsaca.site>) names in terraform files:
 
    /terraform/main.tf
    
@@ -47,24 +47,24 @@ For running this application in your repository you need to:
    
    /teraform1/main.tf
 
-4) create s3 bucket which will contain frontend...need to have same name as domain(test.com)
+4) Create S3 Bucket that contains Frontend. S3 Bucket name should be the same as Domain.
 
-   frontend in https://github.com/Yura-S/ad_frontend.git
+   a) frontend location: https://github.com/Yura-S/ad_frontend.git
    
-   clone it
+   b) clone repo
    
-   change in /src/App.js "api.ysahakyan.devopsaca.site" to your api(api.test.com)
+   c) replace this <"api.ysahakyan.devopsaca.site"> data in /src/App.js with your API URL
    
-   build code(npm run build)
+   d) build code -> npm run build (this creates a new folder with the name <buikd>)
    
-   copy all files in created /build to your s3 bucket
+   e) copy all files from newly created /build folder to your S3 Bucket
 
-5) create route53 hosted zone for your domain and configure it to work
+5) Create Route53 hosted zone for your domain and configure it as needed
 
-6) push to your repository(runs while pushing anything in actions_test)
+6) Push the code from 1-3 steps to your remote repository ///(run starts automatically when changes is pushed to action_test)/// -> change this line after removing action_test
 
-7) there is no data in database. manually add. open database security groups 5432 port for all and add data using create_table.sh script
+7) Initially DB is empty. Manually add data to DB. To be able to make changes in DB, you need to open DB Security Groups 5432 port for all and add data using create_table.sh script
 
-   needs installed psql for it
+   a) psql is needed
 
-   after that you can remove that added security groups rule for security
+   b) after the data migration remove security group rule
